@@ -52,7 +52,8 @@ public class ProduitEnController {
 
 @GetMapping("/formProduit")
  public String formProduit(Model model){
-        model.addAttribute("produit",new ProduitEntree());
+        ProduitEntree produit =new ProduitEntree();
+        model.addAttribute("produit",produit);
      return "formProduit";
  }
 
@@ -60,7 +61,7 @@ public class ProduitEnController {
 
 
 @PostMapping(path = "/save")
-public String save(Model model, @Valid ProduitEntree produit, BindingResult bindingResult,
+private String save(Model model, @Valid  ProduitEntree produit, BindingResult bindingResult,
                    @RequestParam(defaultValue = "0") Integer page ,
                    @RequestParam(defaultValue = "") String keyword){
     if (bindingResult.hasErrors()) return "formProduit";
